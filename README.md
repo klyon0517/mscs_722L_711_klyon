@@ -1,2 +1,2 @@
-# mscs_722L_711_klyon
-Spring 2023 Enterprise Mobile Development
+# Spring 2023 Enterprise Mobile Development
+This is my mobile dev repository.
