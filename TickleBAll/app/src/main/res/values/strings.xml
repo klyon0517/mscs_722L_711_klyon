@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tickle BAll</string>
+    <string name="animated_background_image">animated background image</string>
+    <string name="tickle_ball">Tickle BALL</string>
+    <string name="play">PLAY</string>
+    <string name="idle_animation">Idle animation</string>
+    <string name="idle_screen_name">Idle Screen</string>
+</resources>
