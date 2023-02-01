@@ -5,4 +5,16 @@
     <string name="play">PLAY</string>
     <string name="idle_animation">Idle animation</string>
     <string name="idle_screen_name">Idle Screen</string>
+    <string name="home_screen_bkgnd_image">home screen bkgnd image</string>
+    <string name="hiscore">Hiscore</string>
+    <string name="hiscore_title">Hiscore</string>
+    <string name="hiscore_screen">Hiscore Screen</string>
+    <string name="head">head</string>
+    <string name="armpit">armpit</string>
+    <string name="foot">foot</string>
+    <string name="tickle_success_face">tickle success face</string>
+    <string name="tickle_fail_face">tickle fail face</string>
+    <string name="tickle_screen">Tickle Screen</string>
+    <string name="coin">coin</string>
+    <string name="next">next</string>
 </resources>

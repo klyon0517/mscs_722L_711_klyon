@@ -12,6 +12,16 @@
         android:theme="@style/Theme.TickleBAll"
         tools:targetApi="31">
         <activity
+            android:name=".TickleActivity"
+            android:exported="false"
+            android:label="@string/tickle_screen"
+            android:parentActivityName=".GameActivity" />
+        <activity
+            android:name=".HiscoreActivity"
+            android:exported="false"
+            android:label="@string/hiscore_screen"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".GameActivity"
             android:exported="false"
             android:label="@string/idle_screen_name"

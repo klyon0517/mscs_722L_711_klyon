@@ -7,26 +7,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+public class TickleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tickle);
     }
 
     public void LaunchGame(View view) {
-        Log.d(LOG_TAG, "button clicked");
         Intent idleIntent = new Intent(this, GameActivity.class);
         startActivity(idleIntent);
     }
 
-    public void LaunchHiScore(View view) {
-        Log.d(LOG_TAG, "HiScore");
-        Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
-        startActivity(hiscoreIntent);
+    public void LaunchTickle(View view) {
+        Intent tickleIntent = new Intent(this, TickleActivity.class);
+        startActivity(tickleIntent);
     }
 
 }
