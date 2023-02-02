@@ -12,9 +12,14 @@
         android:theme="@style/Theme.TickleBAll"
         tools:targetApi="31">
         <activity
-            android:name=".TickleActivity"
+            android:name=".SuccessActivity"
             android:exported="false"
-            android:label="@string/tickle_screen"
+            android:label="@string/success_screen"
+            android:parentActivityName=".GameActivity" />
+        <activity
+            android:name=".FailActivity"
+            android:exported="false"
+            android:label="@string/fail_screen"
             android:parentActivityName=".GameActivity" />
         <activity
             android:name=".HiscoreActivity"

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 public class GameActivity extends AppCompatActivity {
@@ -15,8 +14,11 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
     }
 
-    public void LaunchTickle(View view) {
-        Intent tickleIntent = new Intent(this, TickleActivity.class);
+    // Need to set this up so it can launch either success or fail
+    // based on which button is named as the success button
+    // from the database call
+    public void LaunchFail(View view) {
+        Intent tickleIntent = new Intent(this, FailActivity.class);
         startActivity(tickleIntent);
     }
 

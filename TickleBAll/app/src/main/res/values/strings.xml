@@ -14,7 +14,10 @@
     <string name="foot">foot</string>
     <string name="tickle_success_face">tickle success face</string>
     <string name="tickle_fail_face">tickle fail face</string>
-    <string name="tickle_screen">Tickle Screen</string>
     <string name="coin">coin</string>
-    <string name="next">next</string>
+    <string name="success_screen">Success Screen</string>
+    <string name="fail_screen">Fail Screen</string>
+    <string name="successful_tickle">successful tickle</string>
+    <string name="successful_next">Next</string>
+    <string name="fail_next">Next</string>
 </resources>
