@@ -22,11 +22,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/head_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="107dp"
-        android:onClick="LaunchFail"
+        android:onClick="ButtonPress"
         android:text="@string/head"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,22 +34,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/armpit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="67dp"
         android:layout_marginBottom="83dp"
-        android:onClick="LaunchFail"
+        android:onClick="ButtonPress"
         android:text="@string/armpit"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/foot_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="62dp"
-        android:onClick="LaunchFail"
+        android:onClick="ButtonPress"
         android:text="@string/foot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
