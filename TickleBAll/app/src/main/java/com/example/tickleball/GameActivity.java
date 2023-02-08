@@ -1,3 +1,15 @@
+/*  Tickle Ball
+
+    * Software: Native Android mobile game.
+    * Filename: GameActivity.java
+    * Author: Kerry Lyon
+    * Created: February 1, 2023
+
+    * This file contains the method for determining the display
+    * of the success or fail video.
+
+*/
+
 package com.example.tickleball;
 
 import android.content.Intent;
@@ -41,19 +53,27 @@ public class GameActivity extends AppCompatActivity {
 
         Button b = (Button) view;
         String btn_txt = b.getText().toString();
+
         Log.d(LOG_TAG, btn_txt);
 
         if (success_type.equals(btn_txt)) {
 
+            String vid_txt = "tickle_success";
+
             Intent tickleIntent = new Intent(this, SuccessActivity.class);
+            tickleIntent.putExtra("message_key", vid_txt);
             startActivity(tickleIntent);
 
-         } else {
+        } else {
+
+            String vid_txt = "tickle_fail";
 
             Intent tickleIntent = new Intent(this, FailActivity.class);
+            tickleIntent.putExtra("message_key", vid_txt);
             startActivity(tickleIntent);
 
-         }
+        }
+
 
     }
 
