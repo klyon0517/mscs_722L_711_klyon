@@ -20,4 +20,5 @@
     <string name="successful_tickle">successful tickle</string>
     <string name="successful_next">Next</string>
     <string name="fail_next">Next</string>
+    <string name="db_data">db_data</string>
 </resources>

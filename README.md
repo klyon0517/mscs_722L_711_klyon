@@ -9,6 +9,13 @@ If the player won, they receive 3 credits. If they lost, there is an option to s
 
 High score lists the top 10 tickle streaks (correct guesses in a row).
 
+External Files for MariaDB / PHP REST API:
+* Software used: IIS, PHP 8.0, MariaDB 10.6
+* tickle_ball_mariadb.sql (database dump ready for import)
+* PHP files
+  * includes/mariadb/mariadb_connection.php
+  * inetpub/wwwroot/rest_api/query_test.php
+
 Potential enhancements (time allowing):
 * Nice logo
 * Sound effects
