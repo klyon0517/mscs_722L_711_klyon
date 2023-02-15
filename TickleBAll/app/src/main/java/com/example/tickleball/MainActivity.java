@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
 
+    String dat1 = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnRequest = (Button) findViewById(R.id.button2);
+        /* Button btnRequest = (Button) findViewById(R.id.button2);
 
         btnRequest.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
               }
           }
 
-        );
+        ); */
 
         /* dbTest = findViewById(R.id.textView);
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void sendAndRequestResponse() {
+    /* private void sendAndRequestResponse() {
 
         String url = "http://10.0.2.2/rest_api/query_test.php";
 
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(request);
 
-    }
+    } */
 
     public void LaunchGame(View view) {
         Log.d(LOG_TAG, "button clicked");
@@ -120,10 +120,45 @@ public class MainActivity extends AppCompatActivity {
         startActivity(idleIntent);
     }
 
-    /* public void LaunchHiScore(View view) {
+    public void LaunchHiScore(View view) {
         Log.d(LOG_TAG, "HiScore");
+
+        String url = "http://10.0.2.2/rest_api/query_test.php";
+
         Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
-        startActivity(hiscoreIntent);
-    } */
+
+        //RequestQueue initialized
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        //String Request initialized
+        //display the response on screen
+        // private StringRequest request;
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                //display the response on screen
+                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
+                dat1 = response.toString();
+                Log.d(TAG, "Response :" + response.toString());
+
+                hiscoreIntent.putExtra("message_key", dat1);
+                startActivity(hiscoreIntent);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.d(TAG, "Error :" + error.toString());
+            }
+        });
+
+        queue.add(request);
+
+        // Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
+        // hiscoreIntent.putExtra("message_key", dat1);
+        // startActivity(hiscoreIntent);
+    }
 
 }
