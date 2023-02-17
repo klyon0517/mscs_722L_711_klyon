@@ -12,9 +12,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -116,14 +118,47 @@ public class MainActivity extends AppCompatActivity {
 
     public void LaunchGame(View view) {
         Log.d(LOG_TAG, "button clicked");
+
+        String url = "http://10.0.2.2/rest_api/query_tickle_vids.php";
+
         Intent idleIntent = new Intent(this, GameActivity.class);
-        startActivity(idleIntent);
+
+        //RequestQueue initialized
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        //String Request initialized
+        //display the response on screen
+        // private StringRequest request;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
+
+                dat1 = response.toString();
+                Log.d(TAG, "Response :" + response.toString());
+
+                idleIntent.putExtra("message_key", dat1);
+                startActivity(idleIntent);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.d(TAG, "Error :" + error.toString());
+            }
+        });
+
+        queue.add(request);
+
+        // startActivity(idleIntent);
     }
 
     public void LaunchHiScore(View view) {
         Log.d(LOG_TAG, "HiScore");
 
-        String url = "http://10.0.2.2/rest_api/query_test.php";
+        String url = "http://10.0.2.2/rest_api/query_hiscore.php";
 
         Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
 

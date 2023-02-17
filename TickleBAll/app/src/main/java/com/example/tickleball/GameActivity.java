@@ -17,8 +17,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -30,12 +34,54 @@ public class GameActivity extends AppCompatActivity {
     // success vid
     // fail vid
 
-    String success_type = "head";
+    String success_type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        Intent msg_intent = getIntent();
+        String str = msg_intent.getStringExtra("message_key");
+
+        Log.d(LOG_TAG, "Tickle Vids: " + str);
+
+        TextView txtView = (TextView) findViewById(R.id.textView2);
+
+        try {
+            success_type = (new JSONObject(str)).getString("tickle_btn");
+            Log.d(LOG_TAG, "Btn: " + success_type);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        /* JSONObject jObj;
+        try {
+            jObj = new JSONObject(str);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        StringBuilder oneObjectsItem = new StringBuilder();
+
+        for (int i = 0; i < jObj.length(); i++) {
+
+            JSONObject oneObject;
+            try {
+                oneObject = jObj.getJSONObject(i);
+                // oneObjectsItem.append(oneObject.getString("tickle_btn")).append("\n");
+                success_type = oneObject.getString("tickle_btn");
+                // txtView.setText(oneObjectsItem);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+        } */
+
+        // txtView.setText(oneObjectsItem.toString());
+        txtView.setText(success_type);
+
     }
 
     /*

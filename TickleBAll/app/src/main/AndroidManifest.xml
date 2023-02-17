@@ -19,12 +19,12 @@
             android:name=".SuccessActivity"
             android:exported="false"
             android:label="@string/success_screen"
-            android:parentActivityName=".GameActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FailActivity"
             android:exported="false"
             android:label="@string/fail_screen"
-            android:parentActivityName=".GameActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".HiscoreActivity"
             android:exported="false"
