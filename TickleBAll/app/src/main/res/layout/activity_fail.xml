@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".FailActivity">
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/imageView3"
         android:layout_width="311dp"
         android:layout_height="274dp"
@@ -18,30 +18,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4"
-        app:srcCompat="@drawable/tickle_fail" />
+        app:srcCompat="@drawable/tickle_fail" /> -->
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginBottom="74dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="66dp"
         android:onClick="LaunchSuccess"
         android:text="@string/coin"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="66dp"
         android:onClick="LaunchGame"
         android:text="@string/fail_next"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

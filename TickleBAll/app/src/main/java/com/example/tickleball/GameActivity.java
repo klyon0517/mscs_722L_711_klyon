@@ -13,11 +13,13 @@
 package com.example.tickleball;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +37,13 @@ public class GameActivity extends AppCompatActivity {
     // fail vid
 
     String success_type = "";
+    String id ="";
+    String idle_vid = "";
+    String success_vid = "";
+    String fail_vid = "";
+    String url = "http://10.0.2.2/rest_api/files/";
+    String videoUrl = "";
+    Uri uri = Uri.parse("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +56,20 @@ public class GameActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "Tickle Vids: " + str);
 
         TextView txtView = (TextView) findViewById(R.id.textView2);
+        VideoView videoView = findViewById(R.id.videoView);
 
         try {
             success_type = (new JSONObject(str)).getString("tickle_btn");
+            id = (new JSONObject(str)).getString("id");
+            idle_vid = (new JSONObject(str)).getString("idle");
+            success_vid = (new JSONObject(str)).getString("success");
+            fail_vid = (new JSONObject(str)).getString("fail");
+            videoUrl = url + idle_vid;
+            uri = Uri.parse(videoUrl);
+
+
             Log.d(LOG_TAG, "Btn: " + success_type);
+            Log.d(LOG_TAG, "Idle URL: " + url + idle_vid);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -81,6 +100,8 @@ public class GameActivity extends AppCompatActivity {
 
         // txtView.setText(oneObjectsItem.toString());
         txtView.setText(success_type);
+        videoView.setVideoURI(uri);
+        videoView.start();
 
     }
 
@@ -107,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
             String vid_txt = "tickle_success";
 
             Intent tickleIntent = new Intent(this, SuccessActivity.class);
-            tickleIntent.putExtra("message_key", vid_txt);
+            tickleIntent.putExtra("message_key", id + "," + success_vid);
             startActivity(tickleIntent);
 
         } else {
@@ -115,7 +136,7 @@ public class GameActivity extends AppCompatActivity {
             String vid_txt = "tickle_fail";
 
             Intent tickleIntent = new Intent(this, FailActivity.class);
-            tickleIntent.putExtra("message_key", vid_txt);
+            tickleIntent.putExtra("message_key", id + "," + success_vid + "," + fail_vid);
             startActivity(tickleIntent);
 
         }
