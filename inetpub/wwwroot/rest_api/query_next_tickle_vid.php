@@ -3,7 +3,7 @@
   /*  Tickle Ball
 
       * Software: Native Android mobile game.
-      * Filename: query_next_tickle_vids.php
+      * Filename: query_next_tickle_vid.php
       * Author: Kerry Lyon
       * Created: February 20, 2023
 
@@ -17,7 +17,8 @@
   date_default_timezone_set("America/New_York");
 
   include 'mariadb/mariadb_connection.php';
-  
+    
+  $_POST = json_decode(file_get_contents('php://input'), true);
   $prev_id = $_POST['previous_id'];
   
   $stmt = $mariadb_conn->prepare(
@@ -30,10 +31,9 @@
       fail
     FROM
       game_info
-    WHERE id != :prev_id
+    WHERE id != $prev_id
     LIMIT 1");
   $stmt->execute();
-  $stmt->bindParam("prev_id", $prev_id, PDO::PARAM_STR);
   $result = $stmt->fetchObject();
         
   if (!empty($result)) {

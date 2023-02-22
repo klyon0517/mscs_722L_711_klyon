@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "Tickle Vids: " + str);
 
-        TextView txtView = (TextView) findViewById(R.id.textView2);
+        // TextView txtView = (TextView) findViewById(R.id.textView2);
         VideoView videoView = findViewById(R.id.videoView);
 
         try {
@@ -99,7 +98,7 @@ public class GameActivity extends AppCompatActivity {
         } */
 
         // txtView.setText(oneObjectsItem.toString());
-        txtView.setText(success_type);
+        // txtView.setText(success_type);
         videoView.setVideoURI(uri);
         videoView.start();
 
@@ -125,15 +124,11 @@ public class GameActivity extends AppCompatActivity {
 
         if (success_type.equals(btn_txt)) {
 
-            String vid_txt = "tickle_success";
-
             Intent tickleIntent = new Intent(this, SuccessActivity.class);
             tickleIntent.putExtra("message_key", id + "," + success_vid);
             startActivity(tickleIntent);
 
         } else {
-
-            String vid_txt = "tickle_fail";
 
             Intent tickleIntent = new Intent(this, FailActivity.class);
             tickleIntent.putExtra("message_key", id + "," + success_vid + "," + fail_vid);

@@ -9,6 +9,18 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class FailActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -18,6 +30,8 @@ public class FailActivity extends AppCompatActivity {
     String url = "http://10.0.2.2/rest_api/files/";
     String videoUrl = "";
     Uri uri = Uri.parse("");
+    private static final String TAG = MainActivity.class.getName();
+    String dat1 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +72,54 @@ public class FailActivity extends AppCompatActivity {
     }
 
     public void LaunchGame(View view) {
+
+        String url = "http://10.0.2.2/rest_api/query_next_tickle_vid.php";
+
         Intent idleIntent = new Intent(this, GameActivity.class);
-        startActivity(idleIntent);
+
+        //RequestQueue initialized
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        Map<String, String> params = new HashMap();
+        params.put("previous_id", id);
+
+        JSONObject parameters = new JSONObject(params);
+
+        //String Request initialized
+        //display the response on screen
+        // private StringRequest request;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
+
+                dat1 = response.toString();
+                Log.d(TAG, "Response :" + response.toString());
+
+                idleIntent.putExtra("message_key", dat1);
+                startActivity(idleIntent);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.d(TAG, "Error :" + error.toString());
+            }
+        }); /* { protected Map<String, String> getParams(){
+
+            Map<String, String> nextTickle = new HashMap<String, String>();
+            nextTickle.put("previous_id", id);
+            return nextTickle;
+
+        }
+        }; */
+
+        queue.add(request);
+
+        // Intent idleIntent = new Intent(this, GameActivity.class);
+        // startActivity(idleIntent);
     }
 
     public void LaunchSuccess(View view) {
