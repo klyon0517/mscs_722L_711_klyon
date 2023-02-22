@@ -12,11 +12,17 @@ High score lists the top 10 tickle streaks (correct guesses in a row).
 External Files for MariaDB / PHP REST API:
 * Software used: IIS, PHP 8.0, MariaDB 10.6
 * tickle_ball_mariadb.sql (database dump ready for import)
-* PHP files
+* PHP DB conn file
   * includes/mariadb/mariadb_connection.php
-  * inetpub/wwwroot/rest_api/query_test.php
+* PHP REST API files
+  * inetpub/wwwroot/rest_api/query_hiscore.php
+  * inetpub/wwwroot/rest_api/query_next_tickle_vid.php
+  * inetpub/wwwroot/rest_api/query_tickle_vids.php
+* Media located in
+  * inetpub/wwwroot/rest_api/files/
 
 Potential enhancements (time allowing):
+* Coins
 * Nice logo
 * Sound effects
 * Particle effects
