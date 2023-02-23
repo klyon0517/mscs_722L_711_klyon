@@ -1,6 +1,7 @@
 package com.example.tickleball;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,17 @@ public class SuccessActivity extends AppCompatActivity {
         // need a way to find the drawable name based on the string
         // imageView.setImageResource(R.drawable.tickle_success);
         VideoView videoView = findViewById(R.id.videoView);
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+
+                mp.setLooping(true);
+
+            }
+
+        });
 
         Intent msg_intent = getIntent();
         String str = msg_intent.getStringExtra("message_key");
