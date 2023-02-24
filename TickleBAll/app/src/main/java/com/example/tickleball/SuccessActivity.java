@@ -120,7 +120,7 @@ public class SuccessActivity extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
 
                 dat1 = response.toString();
-                Log.d(TAG, "Response :" + response.toString());
+                Log.d(TAG, "Response :" + response);
 
                 idleIntent.putExtra("message_key", dat1);
                 startActivity(idleIntent);

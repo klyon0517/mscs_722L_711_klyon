@@ -19,6 +19,25 @@
   
   $stmt = $mariadb_conn->prepare(
     "SELECT
+      id
+    FROM
+      game_info");
+  $stmt->execute();
+  $result = $stmt->fetchAll();
+  
+  $idsArray = [];
+  
+  foreach($result as $row) {
+    
+    array_push($idsArray,$row['id']);
+    
+  }
+  
+  $random_key = array_rand($idsArray, 1);    
+  $id = $idsArray[$random_key];
+  
+  $stmt = $mariadb_conn->prepare(
+    "SELECT
       id,
       usr_id,
       tickle_btn,
@@ -26,7 +45,8 @@
       success,
       fail
     FROM
-      game_info");
+      game_info
+    WHERE id = $id");
   $stmt->execute();
   $result = $stmt->fetchObject();
         
