@@ -43,15 +43,23 @@ CREATE TABLE `usr_stats` (
   `usr_name` varchar(256) NOT NULL,
   `coin` int(11) NOT NULL,
   `streak` int(11) NOT NULL DEFAULT 0,
-  `streak_date` datetime NOT NULL,
+  `streak_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usr_stats` */
 
 insert  into `usr_stats`(`id`,`usr_name`,`coin`,`streak`,`streak_date`) values 
-(1,'klyon',5,10,'2023-02-09 19:15:24'),
-(2,'akira',3,7,'2023-02-14 19:30:57');
+(1,'klyon',5,10,'2023-02-09'),
+(2,'Akira',3,7,'2023-02-14'),
+(3,'Tetsuo',7,15,'2023-02-28'),
+(4,'Ironman',16,16,'2023-02-01'),
+(5,'Retro',9,5,'2023-01-02'),
+(6,'Arcade',3,1,'2022-12-12'),
+(7,'LaunchBox',29,42,'2022-10-25'),
+(8,'ScummVM',64,33,'2022-12-26'),
+(9,'MS-DOS',8,3,'2023-01-13'),
+(10,'Ti99 4A',10,8,'2022-11-19');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

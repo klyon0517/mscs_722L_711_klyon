@@ -17,6 +17,7 @@ public class HiscoreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiscore);
 
@@ -29,10 +30,15 @@ public class HiscoreActivity extends AppCompatActivity {
         // txtView.setText(str);
 
         JSONArray jArr;
+
         try {
+
             jArr = new JSONArray(str);
+
         } catch (JSONException e) {
+
             throw new RuntimeException(e);
+
         }
 
         StringBuilder oneObjectsItem = new StringBuilder();
@@ -41,12 +47,22 @@ public class HiscoreActivity extends AppCompatActivity {
 
             // oneObjectsItem = "";
             JSONObject oneObject;
+
             try {
+
                 oneObject = jArr.getJSONObject(i);
-                oneObjectsItem.append(oneObject.getString("usr_name")).append("\n");
+                String usrName = oneObject.getString("usr_name");
+                String streak = oneObject.getString("streak");
+                String streakDate = oneObject.getString("streak_date_formatted");
+
+                oneObjectsItem.append(usrName).append("  Streak: ").append(streak).append("  ").append(streakDate).append("\n");
+                // oneObjectsItem.append(oneObject.getString("usr_name")).append("\n");
                 // txtView.setText(oneObjectsItem);
+
             } catch (JSONException e) {
+
                 throw new RuntimeException(e);
+
             }
 
         }

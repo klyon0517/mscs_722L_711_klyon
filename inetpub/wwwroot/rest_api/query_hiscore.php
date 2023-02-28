@@ -19,7 +19,8 @@
   
   $stmt = $mariadb_conn->prepare(
     "SELECT
-      id, usr_name, streak, streak_date
+      id, usr_name, streak, 
+      DATE_FORMAT(streak_date, '%m-%d-%Y') AS streak_date_formatted
     FROM
       usr_stats
     ORDER BY streak DESC
@@ -33,7 +34,7 @@
     
   } else {
     
-    $none = array("id" => "", "usr_name" => "", "streak" => "", "streak_date" => "");
+    $none = array("id" => "", "usr_name" => "", "streak" => "", "streak_date_formatted" => "");
     echo json_encode($none);
           
   }
