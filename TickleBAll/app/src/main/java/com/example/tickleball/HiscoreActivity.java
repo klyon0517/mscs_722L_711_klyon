@@ -1,9 +1,12 @@
 package com.example.tickleball;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +31,22 @@ public class HiscoreActivity extends AppCompatActivity {
 
         TextView txtView = (TextView) findViewById(R.id.textView4);
         // txtView.setText(str);
+
+        VideoView videoView = findViewById(R.id.videoView3);
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+
+                mp.setLooping(true);
+
+            }
+
+        });
+
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.starburst));
+        videoView.start();
 
         JSONArray jArr;
 
