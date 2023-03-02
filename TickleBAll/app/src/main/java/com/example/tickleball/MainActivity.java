@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
 
                 dat1 = response.toString();
-                Log.d(TAG, "Response :" + response.toString());
+                Log.d(TAG, "Response :" + response);
 
                 idleIntent.putExtra("message_key", dat1);
                 startActivity(idleIntent);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 //display the response on screen
                 // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
                 dat1 = response.toString();
-                Log.d(TAG, "Response :" + response.toString());
+                Log.d(TAG, "Response :" + response);
 
                 hiscoreIntent.putExtra("message_key", dat1);
                 startActivity(hiscoreIntent);
