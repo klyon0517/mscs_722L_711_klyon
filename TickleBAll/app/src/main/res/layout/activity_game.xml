@@ -13,39 +13,46 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true" />
 
-    <Button
+    <ImageButton
         android:id="@+id/head_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:contentDescription="@string/head"
         android:onClick="ButtonPress"
-        android:text="@string/head"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tickle_ball" />
 
-    <Button
+    <ImageButton
         android:id="@+id/armpit_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="285dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
+        android:background="@null"
+        android:contentDescription="@string/armpit"
         android:onClick="ButtonPress"
-        android:text="@string/armpit"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/head_btn"
+        app:srcCompat="@drawable/tickle_ball" />
 
-    <Button
+    <ImageButton
         android:id="@+id/foot_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="62dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@null"
+        android:contentDescription="@string/foot"
         android:onClick="ButtonPress"
-        android:text="@string/foot"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/tickle_ball" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

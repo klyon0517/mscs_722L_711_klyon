@@ -11,32 +11,39 @@
         android:id="@+id/videoView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        tools:layout_editor_absoluteX="-83dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/streakDataView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:text="@string/hiscore_title"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/streak_data"
+        android:fontFamily="monospace"
         android:text="@string/db_data"
         android:textColor="#FFFFFF"
+        android:textSize="32sp"
         android:textStyle="bold"
+        android:typeface="monospace"
+        android:shadowColor="#000000"
+        android:shadowDx="-3.5"
+        android:shadowDy="3.5"
+        android:shadowRadius="7.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/hiscoreView" />
+
+    <ImageView
+        android:id="@+id/hiscoreView"
+        android:layout_width="339dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/hiscore_title_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hiscore_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

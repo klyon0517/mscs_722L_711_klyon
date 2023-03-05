@@ -17,7 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -82,8 +82,9 @@ public class GameActivity extends AppCompatActivity {
      */
     public void ButtonPress(View view) {
 
-        Button b = (Button) view;
-        String btn_txt = b.getText().toString();
+        ImageButton b = (ImageButton) view;
+        // String btn_txt = b.getText().toString();
+        String btn_txt = b.getContentDescription().toString();
 
         Log.d(LOG_TAG, success_type);
         Log.d(LOG_TAG, btn_txt);

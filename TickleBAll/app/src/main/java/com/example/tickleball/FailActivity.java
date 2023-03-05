@@ -145,7 +145,7 @@ public class FailActivity extends AppCompatActivity {
         String vid_txt = id + "," + success_vid;
 
         Intent tickleIntent = new Intent(this, SuccessActivity.class);
-        
+
         // Pass response data to SuccessActivity
         tickleIntent.putExtra("message_key", vid_txt);
         startActivity(tickleIntent);

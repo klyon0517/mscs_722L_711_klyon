@@ -9,9 +9,6 @@
     <string name="hiscore">Hiscore</string>
     <string name="hiscore_title">Hiscore</string>
     <string name="hiscore_screen">Tickle Streak</string>
-    <string name="head">head</string>
-    <string name="armpit">armpit</string>
-    <string name="foot">foot</string>
     <string name="tickle_success_face">tickle success face</string>
     <string name="tickle_fail_face">tickle fail face</string>
     <string name="coin">coin</string>
@@ -21,4 +18,15 @@
     <string name="successful_next">Next</string>
     <string name="fail_next">Next</string>
     <string name="db_data">db_data</string>
+    <string name="play_button">Play Button</string>
+    <string name="hiscore_button">Hiscore Button</string>
+    <string name="tickle_title">Tickle Title</string>
+    <string name="streak_data">Streak Data</string>
+    <string name="hiscore_title_screen">Hiscore Title Screen</string>
+    <string name="head">head</string>
+    <string name="armpit">armpit</string>
+    <string name="foot">foot</string>
+    <string name="play_next_game">Play Next Game</string>
+    <string name="play_again">Play Again</string>
+    <string name="buy_success">Buy Success</string>
 </resources>

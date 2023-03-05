@@ -38,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String TAG = MainActivity.class.getName();
     String dat1 = "";
+    // MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // music = MediaPlayer.create(MainActivity.this, R.raw.roa_music_carnival);
+        // music.start();
 
         VideoView videoView = findViewById(R.id.videoView2);
 
@@ -66,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Starts the game
     public void LaunchGame(View view) {
+
+        // music.pause();
 
         Log.d(LOG_TAG, "button clicked");
 

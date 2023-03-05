@@ -41,7 +41,7 @@ public class HiscoreActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "hiscore: " + str);
 
-        TextView txtView = (TextView) findViewById(R.id.textView4);
+        TextView txtView = findViewById(R.id.streakDataView);
         VideoView videoView = findViewById(R.id.videoView3);
 
         // Sets video to loop
@@ -84,9 +84,10 @@ public class HiscoreActivity extends AppCompatActivity {
                 streakObject = streakArr.getJSONObject(i);
                 String usrName = streakObject.getString("usr_name");
                 String streak = streakObject.getString("streak");
-                String streakDate = streakObject.getString("streak_date_formatted");
+                // String streakDate = streakObject.getString("streak_date_formatted");
 
-                streakObjectsItem.append(usrName).append("  Streak: ").append(streak).append("  ").append(streakDate).append("\n");
+                // streakObjectsItem.append(usrName).append("  Streak: ").append(streak).append("  ").append(streakDate).append("\n");
+                streakObjectsItem.append(streak).append("   ").append(usrName).append("\n");
 
             } catch (JSONException e) {
 

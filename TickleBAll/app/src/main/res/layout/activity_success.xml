@@ -13,15 +13,18 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true" />
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginBottom="84dp"
+    <ImageButton
+        android:id="@+id/nextGame"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="50dp"
+        android:background="@null"
+        android:contentDescription="@string/play_next_game"
         android:onClick="LaunchGame"
-        android:text="@string/successful_next"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/videoView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/tickle_ball_play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

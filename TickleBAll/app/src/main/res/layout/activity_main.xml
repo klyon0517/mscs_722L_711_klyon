@@ -11,47 +11,47 @@
         android:id="@+id/videoView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        tools:layout_editor_absoluteX="-102dp"
+        tools:layout_editor_absoluteY="0dp" />
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="36dp"
-        android:fontFamily="monospace"
-        android:text="@string/tickle_ball"
-        android:textAlignment="center"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
-        android:onClick="LaunchGame"
-        android:text="@string/play"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+    <ImageButton
+        android:id="@+id/hiscoreButton"
+        android:layout_width="206dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@null"
+        android:contentDescription="@string/hiscore_button"
         android:onClick="LaunchHiScore"
-        android:text="@string/hiscore"
-        android:textAlignment="center"
-        android:textStyle="bold"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/videoView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:srcCompat="@drawable/hiscore_text" />
+
+    <ImageButton
+        android:id="@+id/tickleButton"
+        android:layout_width="275dp"
+        android:layout_height="275dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:contentDescription="@string/play_button"
+        android:onClick="LaunchGame"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tickleView"
+        app:srcCompat="@drawable/tickle_ball_play" />
+
+    <ImageView
+        android:id="@+id/tickleView"
+        android:layout_width="309dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/tickle_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tickle_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
