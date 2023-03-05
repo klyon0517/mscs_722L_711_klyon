@@ -28,13 +28,14 @@ CREATE TABLE `game_info` (
   PRIMARY KEY (`id`),
   KEY `usr_id` (`usr_id`),
   CONSTRAINT `game_info_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `usr_stats` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `game_info` */
 
 insert  into `game_info`(`id`,`usr_id`,`tickle_btn`,`idle`,`success`,`fail`) values 
 (1,1,'head','kerry_idle.mp4','kerry_success.mp4','kerry_fail.mp4'),
-(2,2,'armpit','matt_idle.mov','matt_success.mov','matt_fail.mov');
+(2,2,'armpit','matt_idle.mov','matt_success.mov','matt_fail.mov'),
+(4,5,'foot','batman_idle.mp4','batman_success.mp4','batman_fail.mp4');
 
 /*Table structure for table `usr_stats` */
 
