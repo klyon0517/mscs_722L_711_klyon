@@ -1,3 +1,16 @@
+/*  Tickle Ball
+
+    * Software: Native Android mobile game.
+    * Filename: FailActivity.java
+    * Author: Kerry Lyon
+    * Created: February 1, 2023
+
+    * This file receives the fail video data and
+    * contains the method for launching the next game
+    * or viewing the success video.
+
+ */
+
 package com.example.tickleball;
 
 import android.content.Intent;
@@ -36,12 +49,13 @@ public class FailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fail);
 
-        // ImageView imageView = (ImageView)findViewById(R.id.imageView3);
         VideoView videoView = findViewById(R.id.videoView);
 
+        // Sets video to loop
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             @Override
@@ -56,12 +70,9 @@ public class FailActivity extends AppCompatActivity {
         Intent msg_intent = getIntent();
         String str = msg_intent.getStringExtra("message_key");
 
+        // Parse the data if it has been received
         if (str != null) {
 
-            // @SuppressLint("DiscouragedApi") int imaged = getResources().getIdentifier(str, "drawable", getPackageName());
-            // String imageName = getResources().getResourceName(imaged);
-
-            // imageView.setImageResource(imaged);
             String[] dataStr = str.split(",", 3);
             id = dataStr[0];
             success_vid = dataStr[1];
@@ -74,7 +85,6 @@ public class FailActivity extends AppCompatActivity {
             Log.d(LOG_TAG, id);
             Log.d(LOG_TAG, success_vid);
             Log.d(LOG_TAG, fail_vid);
-            // Log.d(LOG_TAG, imageName);
 
             videoView.setVideoURI(uri);
             videoView.start();
@@ -83,13 +93,11 @@ public class FailActivity extends AppCompatActivity {
 
     }
 
+    // Starts a new game
     public void LaunchGame(View view) {
 
         String url = "http://10.0.2.2/rest_api/query_next_tickle_vid.php";
-
         Intent idleIntent = new Intent(this, GameActivity.class);
-
-        //RequestQueue initialized
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap();
@@ -97,51 +105,48 @@ public class FailActivity extends AppCompatActivity {
 
         JSONObject parameters = new JSONObject(params);
 
-        //String Request initialized
-        //display the response on screen
-        // private StringRequest request;
+        // Gets the game data using my PHP REST API
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+
             @Override
             public void onResponse(JSONObject response) {
-
-                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
 
                 dat1 = response.toString();
                 Log.d(TAG, "Response :" + response.toString());
 
+                // Pass response data to GameActivity
                 idleIntent.putExtra("message_key", dat1);
                 startActivity(idleIntent);
 
             }
+
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
 
                 Log.d(TAG, "Error :" + error.toString());
+
             }
-        }); /* { protected Map<String, String> getParams(){
 
-            Map<String, String> nextTickle = new HashMap<String, String>();
-            nextTickle.put("previous_id", id);
-            return nextTickle;
-
-        }
-        }; */
+        });
 
         queue.add(request);
 
-        // Intent idleIntent = new Intent(this, GameActivity.class);
-        // startActivity(idleIntent);
     }
 
+    /*  If the player wants to see the
+     *  success video, he / she can click
+     *  the coin button to spend currency
+     *  to view it.
+     */
     public void LaunchSuccess(View view) {
 
         String vid_txt = id + "," + success_vid;
 
         Intent tickleIntent = new Intent(this, SuccessActivity.class);
-        // add code to pass the str via an intent
-        // str should be ticle_success always since it's the winning activity
-        // Otherwise, the image will not show
+        
+        // Pass response data to SuccessActivity
         tickleIntent.putExtra("message_key", vid_txt);
         startActivity(tickleIntent);
 
