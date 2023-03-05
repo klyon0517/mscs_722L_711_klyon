@@ -1,3 +1,15 @@
+/*  Tickle Ball
+
+    * Software: Native Android mobile game.
+    * Filename: SuccessActivity.java
+    * Author: Kerry Lyon
+    * Created: February 1, 2023
+
+    * This file receives the success video data and
+    * contains the method for launching the next game.
+
+ */
+
 package com.example.tickleball;
 
 import android.content.Intent;
@@ -25,8 +37,6 @@ import java.util.Map;
 public class SuccessActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    // View imageView;
-    // private static final Context context = null;
     String id ="";
     String success_vid = "";
     String url = "http://10.0.2.2/rest_api/files/";
@@ -41,11 +51,9 @@ public class SuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
 
-        // ImageView imageView = (ImageView)findViewById(R.id.imageView2);
-        // need a way to find the drawable name based on the string
-        // imageView.setImageResource(R.drawable.tickle_success);
         VideoView videoView = findViewById(R.id.videoView);
 
+        // Sets video to loop
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             @Override
@@ -60,21 +68,8 @@ public class SuccessActivity extends AppCompatActivity {
         Intent msg_intent = getIntent();
         String str = msg_intent.getStringExtra("message_key");
 
-
-
-        // Resources resources = context.getResources();
-        // final int resourceId = resources.getIdentifier(str, "drawable", context.getPackageName());
-        // String s = String.valueOf(resourceId);
-
-        // @SuppressLint("DiscouragedApi") int imaged = getResources().getIdentifier(str, "drawable", getPackageName());
-        // String imageName = getResources().getResourceName(imaged);
-
+        // Parse the data if it has been received
         if (str != null) {
-
-            // @SuppressLint("DiscouragedApi") int imaged = getResources().getIdentifier(str, "drawable", getPackageName());
-            // String imageName = getResources().getResourceName(imaged);
-
-            // imageView.setImageResource(imaged);
 
             String[] dataStr = str.split(",", 2);
             id = dataStr[0];
@@ -86,9 +81,6 @@ public class SuccessActivity extends AppCompatActivity {
             Log.d(LOG_TAG, str);
             Log.d(LOG_TAG, id);
             Log.d(LOG_TAG, success_vid);
-            // Log.d(LOG_TAG, imageName);
-
-            // imageView.setBackground(R.drawable.tickle_success);
 
             videoView.setVideoURI(uri);
             videoView.start();
@@ -97,13 +89,11 @@ public class SuccessActivity extends AppCompatActivity {
 
     }
 
+    // Starts a new game
     public void LaunchGame(View view) {
 
         String url = "http://10.0.2.2/rest_api/query_next_tickle_vid.php";
-
         Intent idleIntent = new Intent(this, GameActivity.class);
-
-        //RequestQueue initialized
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap();
@@ -111,41 +101,34 @@ public class SuccessActivity extends AppCompatActivity {
 
         JSONObject parameters = new JSONObject(params);
 
-        // String Request initialized
-        // display the response on screen
-        // private StringRequest request;
+        // Gets the game data using my PHP REST API
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+
             @Override
             public void onResponse(JSONObject response) {
-
-                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
 
                 dat1 = response.toString();
                 Log.d(TAG, "Response :" + response);
 
+                // Pass response data to GameActivity
                 idleIntent.putExtra("message_key", dat1);
                 startActivity(idleIntent);
 
             }
+
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
 
                 Log.d(TAG, "Error :" + error.toString());
-            }
-        }); /*{ protected Map<String, String> getParams(){
-
-                Map<String, String> nextTickle = new HashMap<String, String>();
-                nextTickle.put("previous_id", id);
-                return nextTickle;
 
             }
-        }; */
+
+        });
 
         queue.add(request);
 
-        // Intent idleIntent = new Intent(this, GameActivity.class);
-        // startActivity(idleIntent);
     }
 
 }
