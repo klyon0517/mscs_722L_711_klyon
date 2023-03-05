@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         VideoView videoView = findViewById(R.id.videoView2);
 
-        // Allows video to loop
+        // Sets video to loop
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             @Override

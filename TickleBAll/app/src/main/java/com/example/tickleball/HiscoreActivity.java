@@ -1,3 +1,15 @@
+/*  Tickle Ball
+
+    * Software: Native Android mobile game.
+    * Filename: HiscoreActivity.java
+    * Author: Kerry Lyon
+    * Created: February 1, 2023
+
+    * This file receives the hiscore streak data and
+    * parses it for display.
+
+ */
+
 package com.example.tickleball;
 
 import android.content.Intent;
@@ -30,10 +42,9 @@ public class HiscoreActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "hiscore: " + str);
 
         TextView txtView = (TextView) findViewById(R.id.textView4);
-        // txtView.setText(str);
-
         VideoView videoView = findViewById(R.id.videoView3);
 
+        // Sets video to loop
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             @Override
@@ -48,11 +59,11 @@ public class HiscoreActivity extends AppCompatActivity {
         videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.starburst));
         videoView.start();
 
-        JSONArray jArr;
+        JSONArray streakArr;
 
         try {
 
-            jArr = new JSONArray(str);
+            streakArr = new JSONArray(str);
 
         } catch (JSONException e) {
 
@@ -60,23 +71,22 @@ public class HiscoreActivity extends AppCompatActivity {
 
         }
 
-        StringBuilder oneObjectsItem = new StringBuilder();
+        StringBuilder streakObjectsItem = new StringBuilder();
 
-        for (int i = 0; i < jArr.length(); i++) {
+        // Loop through the array to get individual streaks
+        for (int i = 0; i < streakArr.length(); i++) {
 
-            // oneObjectsItem = "";
-            JSONObject oneObject;
+            JSONObject streakObject;
 
             try {
 
-                oneObject = jArr.getJSONObject(i);
-                String usrName = oneObject.getString("usr_name");
-                String streak = oneObject.getString("streak");
-                String streakDate = oneObject.getString("streak_date_formatted");
+                // parse the JSON object to get individual data
+                streakObject = streakArr.getJSONObject(i);
+                String usrName = streakObject.getString("usr_name");
+                String streak = streakObject.getString("streak");
+                String streakDate = streakObject.getString("streak_date_formatted");
 
-                oneObjectsItem.append(usrName).append("  Streak: ").append(streak).append("  ").append(streakDate).append("\n");
-                // oneObjectsItem.append(oneObject.getString("usr_name")).append("\n");
-                // txtView.setText(oneObjectsItem);
+                streakObjectsItem.append(usrName).append("  Streak: ").append(streak).append("  ").append(streakDate).append("\n");
 
             } catch (JSONException e) {
 
@@ -86,7 +96,7 @@ public class HiscoreActivity extends AppCompatActivity {
 
         }
 
-        txtView.setText(oneObjectsItem.toString());
+        txtView.setText(streakObjectsItem.toString());
 
     }
 
