@@ -1,12 +1,12 @@
 /*  Tickle Ball
 
- * Software: Native Android mobile game.
- * Filename: MainActivity.java
- * Author: Kerry Lyon
- * Created: February 1, 2023
+    * Software: Native Android mobile game.
+    * Filename: MainActivity.java
+    * Author: Kerry Lyon
+    * Created: February 1, 2023
 
- * This file contains the methods for launching the game
- * or showing the hiscore streaks.
+    * This file contains the methods for launching the game
+    * or showing the hiscore streaks.
 
  */
 
