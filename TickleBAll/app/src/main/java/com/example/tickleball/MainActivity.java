@@ -1,3 +1,15 @@
+/*  Tickle Ball
+
+ * Software: Native Android mobile game.
+ * Filename: MainActivity.java
+ * Author: Kerry Lyon
+ * Created: February 1, 2023
+
+ * This file contains the methods for launching the game
+ * or showing the hiscore streaks.
+
+ */
+
 package com.example.tickleball;
 
 import android.content.Intent;
@@ -24,9 +36,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-
     private static final String TAG = MainActivity.class.getName();
-
     String dat1 = "";
 
     @Override
@@ -37,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         VideoView videoView = findViewById(R.id.videoView2);
 
+        // Allows video to loop
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             @Override
@@ -51,169 +62,84 @@ public class MainActivity extends AppCompatActivity {
         videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.starburst));
         videoView.start();
 
-        /* Button btnRequest = (Button) findViewById(R.id.button2);
-
-        btnRequest.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v){
-
-                  sendAndRequestResponse();
-
-              }
-          }
-
-        ); */
-
-        /* dbTest = findViewById(R.id.textView);
-
-        //RequestQueue initialized
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                // dbTest.setText("");
-                // Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_SHORT).show();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                // Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                // Log.i(TAG,"Error :" + error.toString());
-                dbTest.setText("bummer!");
-
-            }
-        }), {
-
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String, String> param = new HashMap<String, String>();
-
-                param.put("name", tempTxt);
-                return param;
-
-            }
-        };
-
-        // RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        requestQueue.add(request); */
-
     }
 
-    /* private void sendAndRequestResponse() {
-
-        String url = "http://10.0.2.2/rest_api/query_test.php";
-
-        //RequestQueue initialized
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        //String Request initialized
-        //display the response on screen
-        // private StringRequest request;
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-
-                //display the response on screen
-                Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.d(TAG, "Error :" + error.toString());
-            }
-        });
-
-        queue.add(request);
-
-    } */
-
+    // Starts the game
     public void LaunchGame(View view) {
+
         Log.d(LOG_TAG, "button clicked");
 
         String url = "http://10.0.2.2/rest_api/query_tickle_vids.php";
-
         Intent idleIntent = new Intent(this, GameActivity.class);
-
-        //RequestQueue initialized
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        //String Request initialized
-        //display the response on screen
-        // private StringRequest request;
+        // Gets the game data using my PHP REST API
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
             @Override
             public void onResponse(JSONObject response) {
-
-                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
 
                 dat1 = response.toString();
                 Log.d(TAG, "Response :" + response);
 
+                // Pass response data to GameActivity
                 idleIntent.putExtra("message_key", dat1);
                 startActivity(idleIntent);
 
             }
+
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
 
                 Log.d(TAG, "Error :" + error.toString());
+
             }
+
         });
 
         queue.add(request);
 
-        // startActivity(idleIntent);
     }
 
+    // Shows the top 10 best streaks
     public void LaunchHiScore(View view) {
+
         Log.d(LOG_TAG, "HiScore");
 
         String url = "http://10.0.2.2/rest_api/query_hiscore.php";
-
         Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
-
-        //RequestQueue initialized
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        //String Request initialized
-        //display the response on screen
-        // private StringRequest request;
+        // Gets the hiscore streak data using my PHP REST API
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
             @Override
             public void onResponse(JSONArray response) {
 
-                //display the response on screen
-                // Toast.makeText(getApplicationContext(), "Response: " + response.toString(), Toast.LENGTH_LONG).show();
                 dat1 = response.toString();
                 Log.d(TAG, "Response :" + response);
 
+                // Pass response data to HiscoreActivity
                 hiscoreIntent.putExtra("message_key", dat1);
                 startActivity(hiscoreIntent);
 
             }
+
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
 
                 Log.d(TAG, "Error :" + error.toString());
+
             }
+
         });
 
         queue.add(request);
 
-        // Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
-        // hiscoreIntent.putExtra("message_key", dat1);
-        // startActivity(hiscoreIntent);
     }
 
 }
