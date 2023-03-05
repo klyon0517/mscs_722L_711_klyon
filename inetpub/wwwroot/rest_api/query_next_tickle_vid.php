@@ -17,7 +17,7 @@
   date_default_timezone_set("America/New_York");
 
   include 'mariadb/mariadb_connection.php';
-    
+  
   $_POST = json_decode(file_get_contents('php://input'), true);
   $prev_id = $_POST['previous_id'];
   
@@ -32,6 +32,7 @@
     FROM
       game_info
     WHERE id != $prev_id
+    ORDER BY RAND();
     LIMIT 1");
   $stmt->execute();
   $result = $stmt->fetchObject();
