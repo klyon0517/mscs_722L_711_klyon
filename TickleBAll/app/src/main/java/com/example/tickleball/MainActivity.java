@@ -109,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Takes the player to the content creation screen.
+    public void UploadGame(View view) {
+
+        Log.d(LOG_TAG, "Upload");
+
+        Intent uploadIntent = new Intent(this, UploadActivity.class);
+        startActivity(uploadIntent);
+
+    }
+
     // Shows the top 10 best streaks
     public void LaunchHiScore(View view) {
 
