@@ -13,8 +13,10 @@
 
 package com.example.tickleball;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +27,23 @@ public class UploadActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        VideoView videoView = findViewById(R.id.videoView7);
+
+        // Sets video to loop
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+
+                mp.setLooping(true);
+
+            }
+
+        });
+
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.starburst));
+        videoView.start();
 
     }
 
