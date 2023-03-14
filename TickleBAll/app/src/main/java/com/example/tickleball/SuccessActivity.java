@@ -39,7 +39,8 @@ public class SuccessActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     String id ="";
     String success_vid = "";
-    String url = "http://10.0.2.2/rest_api/files/";
+    // String url = "http://10.0.2.2/rest_api/files/";
+    String url = "http://192.168.1.158/rest_api/files/";
     String videoUrl = "";
     Uri uri = Uri.parse("");
     private static final String TAG = MainActivity.class.getName();
@@ -92,7 +93,8 @@ public class SuccessActivity extends AppCompatActivity {
     // Starts a new game
     public void LaunchGame(View view) {
 
-        String url = "http://10.0.2.2/rest_api/query_next_tickle_vid.php";
+        // String url = "http://10.0.2.2/rest_api/query_next_tickle_vid.php";
+        String url = "http://192.168.1.158/rest_api/query_next_tickle_vid.php";
         Intent idleIntent = new Intent(this, GameActivity.class);
         RequestQueue queue = Volley.newRequestQueue(this);
 

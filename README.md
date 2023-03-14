@@ -1,7 +1,7 @@
 # Spring 2023 Enterprise Mobile Development
 This is my mobile dev repository.
 
-## Project 1: Tickle Ball (Native Android Game)
+## Project 1 and 2: Tickle Ball (Native Android Game)
 
 Social media game where the player interacts with 3 green circles (tickle points) overlaying a short video of a person standing idle. The tickle point overlay is always in the same location: 1 circle near the head, 1 near the armpit, and 1 near the feet. (This also acts as a positioning template for content creators to get creative with. Ex. What kind of a funny and creative position could a person stand in relation to the tickle circles.) The player guesses where the person in the video is ticklish by clicking one of the three tickle points. If they get it correct, they get the "tickle ending"; a new video of the person laughing. If the player guesses wrong, it goes to a video of the person acting angry or sad.
 
@@ -20,6 +20,13 @@ External Files for MariaDB / PHP REST API:
   * inetpub/wwwroot/rest_api/query_tickle_vids.php
 * Media located in
   * inetpub/wwwroot/rest_api/files/
+
+Project 2 additions:
+* Connect to Android device from my PC
+* Create an upload page
+* Access camera
+* Film vids and upload
+* Create player account and vids via REST API
 
 Potential enhancements (time allowing):
 * Coins

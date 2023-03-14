@@ -33,7 +33,8 @@ public class GameActivity extends AppCompatActivity {
     String idle_vid = "";
     String success_vid = "";
     String fail_vid = "";
-    String url = "http://10.0.2.2/rest_api/files/";
+    // String url = "http://10.0.2.2/rest_api/files/";
+    String url = "http://192.168.1.158/rest_api/files/";
     String videoUrl = "";
     Uri uri = Uri.parse("");
 

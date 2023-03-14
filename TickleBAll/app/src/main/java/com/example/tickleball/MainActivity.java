@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "button clicked");
 
-        String url = "http://10.0.2.2/rest_api/query_tickle_vids.php";
+        // String url = "http://10.0.2.2/rest_api/query_tickle_vids.php";
+        String url = "http://192.168.1.158/rest_api/query_tickle_vids.php";
         Intent idleIntent = new Intent(this, GameActivity.class);
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -124,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "HiScore");
 
-        String url = "http://10.0.2.2/rest_api/query_hiscore.php";
+        // String url = "http://10.0.2.2/rest_api/query_hiscore.php";
+        String url = "http://192.168.1.158/rest_api/query_hiscore.php";
         Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
         RequestQueue queue = Volley.newRequestQueue(this);
 
