@@ -18,6 +18,7 @@ External Files for MariaDB / PHP REST API:
   * inetpub/wwwroot/rest_api/query_hiscore.php
   * inetpub/wwwroot/rest_api/query_next_tickle_vid.php
   * inetpub/wwwroot/rest_api/query_tickle_vids.php
+  * inetpub/wwwroot/rest_api/query_upload_vids.php
 * Media located in
   * inetpub/wwwroot/rest_api/files/
 

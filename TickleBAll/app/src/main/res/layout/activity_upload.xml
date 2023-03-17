@@ -15,12 +15,61 @@
         tools:layout_editor_absoluteY="32dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="temp test"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/username"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/videoView7" />
+
+    <Button
+        android:id="@+id/uploadBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/upload_vids_button"
+        android:onClick="UploadVids"
+        android:text="@string/upload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <TextView
+        android:id="@+id/tickleSpot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/tickle_spot"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editUsername" />
+
+    <Spinner
+        android:id="@+id/tickleSpinner"
+        android:layout_width="304dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/editable_tickle_spot"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tickleSpot" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
