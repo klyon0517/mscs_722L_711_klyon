@@ -84,7 +84,6 @@ public class GameActivity extends AppCompatActivity {
     public void ButtonPress(View view) {
 
         ImageButton b = (ImageButton) view;
-        // String btn_txt = b.getText().toString();
         String btn_txt = b.getContentDescription().toString();
 
         Log.d(LOG_TAG, success_type);

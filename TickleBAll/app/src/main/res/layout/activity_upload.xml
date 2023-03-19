@@ -41,7 +41,6 @@
         android:id="@+id/editUsername"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -53,7 +52,6 @@
         android:id="@+id/tickleSpot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:text="@string/tickle_spot"
         android:textSize="20sp"
@@ -65,11 +63,81 @@
         android:id="@+id/tickleSpinner"
         android:layout_width="304dp"
         android:layout_height="48dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:contentDescription="@string/editable_tickle_spot"
         android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tickleSpot" />
+
+    <Button
+        android:id="@+id/rec_idle_vid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/record_idle_vid_btn"
+        android:onClick="RecordVid"
+        android:text="@string/record_idle_video"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tickleSpinner" />
+
+    <TextView
+        android:id="@+id/idleVidName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rec_idle_vid" />
+
+    <Button
+        android:id="@+id/rec_success_vid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/record_success_vid_btn"
+        android:onClick="RecordVid"
+        android:text="@string/record_success_video"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idleVidName" />
+
+    <TextView
+        android:id="@+id/successVidName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rec_success_vid" />
+
+    <Button
+        android:id="@+id/rec_fail_vid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/record_fail_vid_btn"
+        android:onClick="RecordVid"
+        android:text="@string/record_fail_video"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/successVidName" />
+
+    <TextView
+        android:id="@+id/failVidName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rec_fail_vid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

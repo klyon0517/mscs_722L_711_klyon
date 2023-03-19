@@ -13,19 +13,33 @@
 
 package com.example.tickleball;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,9 +57,27 @@ import java.util.Map;
 public class UploadActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static int CAMERA_PERMISSION_CODE = 100;
+    ActivityResultLauncher<Intent> activityResultLauncher;
+    VideoView videoView;
+    TextView idleVideoName;
+    TextView successVidName;
+    TextView failVidName;
     Spinner tickleChoice;
+    Uri uri;
+    Cursor returnCursor;
     String dat1 = "";
     String message = "";
+    String vidFileName = "";
+    String idleVidFileName = "";
+    String successVidFileName = "";
+    String failVidFileName = "";
+    String vidFileSize = "";
+    String mimeType = "";
+    String btn_txt = "";
+    int nameIndex;
+    int sizeIndex;
+    // Uri videoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +90,7 @@ public class UploadActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         tickleChoice.setAdapter(adapter);
 
-        VideoView videoView = findViewById(R.id.videoView7);
+        videoView = findViewById(R.id.videoView7);
 
         // Sets video to loop
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -75,7 +107,142 @@ public class UploadActivity extends AppCompatActivity {
         videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.starburst));
         videoView.start();
 
+        if (cameraExists()) {
+
+            Log.d(LOG_TAG, "Camera Detected");
+            cameraPermission();
+
+        } else {
+
+            Log.d(LOG_TAG, "No Camera");
+
+        }
+
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+
+                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+
+                            // Get information about the video file.
+                            Intent videoPath = result.getData();
+                            uri = videoPath.getData();
+                            mimeType = getContentResolver().getType(uri);
+                            returnCursor =
+                                    getContentResolver().query(uri, null, null, null, null);
+                            nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                            sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+                            returnCursor.moveToFirst();
+                            vidFileName = returnCursor.getString(nameIndex);
+                            vidFileSize = Long.toString(returnCursor.getLong(sizeIndex));
+                            // int foo = Integer.parseInt(vidFileSize);
+                            // File file = new File(path);
+
+                            // Convert to bytes, then string
+
+                            // String s = new String(bytes, StandardCharsets.UTF_8);
+
+                            switch (btn_txt) {
+
+                                case "record idle vid btn":
+
+                                    idleVideoName = findViewById(R.id.idleVidName);
+                                    idleVideoName.setText(vidFileName);
+                                    idleVidFileName = vidFileName;
+                                    break;
+
+                                case "record success vid btn":
+
+                                    successVidName = findViewById(R.id.successVidName);
+                                    successVidName.setText(vidFileName);
+                                    successVidFileName = vidFileName;
+                                    break;
+
+                                case "record fail vid btn":
+
+                                    failVidName = findViewById(R.id.failVidName);
+                                    failVidName.setText(vidFileName);
+                                    failVidFileName = vidFileName;
+                                    break;
+
+                            }
+
+                            Log.d(LOG_TAG, "Video has been recorded. And is available here: " + uri.toString());
+                            Log.d(LOG_TAG, uri.toString());
+                            Log.d(LOG_TAG, vidFileName);
+                            Log.d(LOG_TAG, vidFileSize);
+                            Log.d(LOG_TAG, mimeType);
+                            // Log.d(LOG_TAG, s);
+
+                            videoView.start();
+
+                        } else if (result.getResultCode() == RESULT_CANCELED) {
+
+                            Log.d(LOG_TAG, "Video has been cancelled.");
+                            videoView.start();
+
+                        } else {
+
+                            Log.d(LOG_TAG, "Video Error!");
+                            videoView.start();
+
+                        }
+
+                    }
+
+                }
+
+        );
+
     }
+
+    public void RecordVid(View view) {
+
+        Button b = (Button) view;
+        btn_txt = b.getContentDescription().toString();
+
+        Log.d(LOG_TAG, btn_txt);
+
+        // recordVideo();
+        Intent recordIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        activityResultLauncher.launch(recordIntent);
+
+    }
+
+    private boolean cameraExists() {
+
+        if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
+    private void cameraPermission() {
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+
+            ActivityCompat.requestPermissions(this, new String[]
+                    {Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+
+        }
+
+    }
+
+    /* private void recordVideo() {
+
+        Intent recordIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        activityResultLauncher.launch(recordIntent);
+
+    } */
 
     public void UploadVids(View view) {
 
@@ -99,6 +266,12 @@ public class UploadActivity extends AppCompatActivity {
             Map<String, String> params = new HashMap();
             params.put("usr_name", user);
             params.put("tickle_btn", tickle);
+            params.put("idle", idleVidFileName);
+            // params.put("idle_video", uri.toString());
+            params.put("success", successVidFileName);
+            // params.put("success_video", uri.toString());
+            params.put("fail", failVidFileName);
+            // params.put("fail_video", uri.toString());
 
             JSONObject parameters = new JSONObject(params);
 

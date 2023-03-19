@@ -48,6 +48,12 @@
     <string name="editable_username">Editable Username</string>
     <string name="editable_tickle_spot">Editable Tickle Spot</string>
     <string name="editable_username_field">Editable Username Field</string>
+    <string name="record_idle_video">Record Idle Video</string>
+    <string name="record_success_video">Record Success Video</string>
+    <string name="record_idle_vid_btn">record idle vid btn</string>
+    <string name="record_success_vid_btn">record success vid btn</string>
+    <string name="record_fail_vid_btn">record fail vid btn</string>
+    <string name="record_fail_video">Record Fail Video</string>
     <string-array name="tickle_spots">
         <item>head</item>
         <item>armpit</item>
