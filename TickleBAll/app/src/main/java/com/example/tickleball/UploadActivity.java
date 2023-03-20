@@ -91,7 +91,6 @@ public class UploadActivity extends AppCompatActivity {
     String failVidBytesStr = "";
     int nameIndex;
     int sizeIndex;
-    // Uri videoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +150,8 @@ public class UploadActivity extends AppCompatActivity {
                             returnCursor.moveToFirst();
                             vidFileName = returnCursor.getString(nameIndex);
                             vidFileSize = Long.toString(returnCursor.getLong(sizeIndex));
+
+                            // Get the video file, convert to byte array, and encode as base64 string
                             File file = new File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), vidFileName);
                             byte[] bytes = new byte[Integer.parseInt(vidFileSize)];
                             BufferedInputStream buf = null;
@@ -169,9 +170,7 @@ public class UploadActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-                            // vidBytesStr = new String(bytes, StandardCharsets.UTF_8);
                             vidBytesStr = Base64.encodeToString(bytes, 0);
-                            // Log.d(LOG_TAG, s);
 
                             switch (btn_txt) {
 
@@ -231,15 +230,36 @@ public class UploadActivity extends AppCompatActivity {
 
     public void RecordVid(View view) {
 
-        String vidTypeName = "";
-        // Generate date / time for file name
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss");
-
-        // Generate random number to add to file name
-
         Button b = (Button) view;
         btn_txt = b.getContentDescription().toString();
+
+        Log.d(LOG_TAG, btn_txt);
+
+        Intent recordIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+
+        File vidpath = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+
+        // File vidFile = new File(vidpath, vidTypeName + "_" + formatter.format(date) + ".mp4");
+        File vidFile = new File(vidpath, genRandomName());
+
+        // Convert file to uri
+        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", vidFile);
+        // Save video here
+        recordIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        // Grant write permission to the camera
+        recordIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        // recordIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        // Low quality video since I'm using Volley and a REST API
+        recordIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+        recordIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 5);
+        activityResultLauncher.launch(recordIntent);
+
+    }
+
+    private String genRandomName() {
+
+        // Determine type of tickle video
+        String vidTypeName = "";
 
         switch (btn_txt) {
 
@@ -260,27 +280,9 @@ public class UploadActivity extends AppCompatActivity {
 
         }
 
-        Log.d(LOG_TAG, btn_txt);
-
-        // recordVideo();
-        Intent recordIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-
-        File vidpath = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
-
-
-        File vidFile = new File(vidpath, vidTypeName + "_" + formatter.format(date) + ".mp4");
-
-        // Convert file to uri
-        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", vidFile);
-        // Save video here
-        recordIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        // Grant write permission to the camera
-        recordIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        // recordIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        // Low quality video since I'm using Volley and a REST API
-        recordIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
-        recordIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 5);
-        activityResultLauncher.launch(recordIntent);
+        // Generate date / time for file name
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        return vidTypeName + "_" + formatter.format(new Date()) + ".mp4";
 
     }
 
@@ -332,9 +334,9 @@ public class UploadActivity extends AppCompatActivity {
             Map<String, String> params = new HashMap();
             params.put("usr_name", user);
             params.put("tickle_btn", tickle);
-            params.put("idle", idleVidFileName);
-            params.put("success", successVidFileName);
-            params.put("fail", failVidFileName);
+            params.put("idle", user + "_" + idleVidFileName);
+            params.put("success", user + "_" + successVidFileName);
+            params.put("fail", user + "_" + failVidFileName);
             params.put("idle_video", idleVidBytesStr);
             params.put("success_video", successVidBytesStr);
             params.put("fail_video", failVidBytesStr);

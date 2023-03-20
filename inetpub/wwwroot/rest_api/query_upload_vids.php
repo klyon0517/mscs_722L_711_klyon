@@ -26,10 +26,10 @@
   $usr_name = $_POST['usr_name'];
   $tickle_btn = $_POST['tickle_btn'];
   $idle = $_POST['idle'];
-  $idle_video = $_POST['idle_video'];
   $success = $_POST['success'];
-  $success_video = $_POST['success_video'];
   $fail = $_POST['fail'];
+  $idle_video = $_POST['idle_video'];
+  $success_video = $_POST['success_video'];
   $fail_video = $_POST['fail_video'];
   
   /* $usr_name = "SqH";
@@ -74,19 +74,19 @@
   $stmt = $mariadb_conn->prepare(
     "INSERT INTO
       game_info
-    (usr_id, tickle_btn, idle, success, fail, idle_video, success_video, fail_video)
+    (usr_id, tickle_btn, idle, success, fail)
     VALUES
-    (:usr_id, :tickle_btn, :idle, :success, :fail, :idle_video, :success_video, :fail_video)");
+    (:usr_id, :tickle_btn, :idle, :success, :fail)");
   $stmt->bindParam("usr_id", $usr_id, PDO::PARAM_STR);
   $stmt->bindParam("tickle_btn", $tickle_btn, PDO::PARAM_STR);
   $stmt->bindParam("idle", $idle, PDO::PARAM_STR);
   $stmt->bindParam("success", $success, PDO::PARAM_STR);
   $stmt->bindParam("fail", $fail, PDO::PARAM_STR);
-  $stmt->bindParam("idle_video", $idle_video, PDO::PARAM_STR);
-  $stmt->bindParam("success_video", $success_video, PDO::PARAM_STR);
-  $stmt->bindParam("fail_video", $fail_video, PDO::PARAM_STR);
   $stmt->execute();
   
+  $idle_video = base64_decode($idle_video, true);
+  $success_video = base64_decode($success_video, true);
+  $fail_video = base64_decode($fail_video, true);
   file_put_contents("files/" . $idle, $idle_video);
   file_put_contents("files/" . $success, $success_video);
   file_put_contents("files/" . $fail, $fail_video);
