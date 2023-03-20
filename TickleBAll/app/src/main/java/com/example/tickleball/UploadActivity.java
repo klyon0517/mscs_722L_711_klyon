@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -40,6 +41,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,6 +53,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +74,7 @@ public class UploadActivity extends AppCompatActivity {
     TextView successVidName;
     TextView failVidName;
     Spinner tickleChoice;
-    Uri uri;
+    Uri resultUri;
     Cursor returnCursor;
     String dat1 = "";
     String message = "";
@@ -75,6 +85,10 @@ public class UploadActivity extends AppCompatActivity {
     String vidFileSize = "";
     String mimeType = "";
     String btn_txt = "";
+    String vidBytesStr = "";
+    String idleVidBytesStr = "";
+    String successVidBytesStr = "";
+    String failVidBytesStr = "";
     int nameIndex;
     int sizeIndex;
     // Uri videoPath;
@@ -128,21 +142,35 @@ public class UploadActivity extends AppCompatActivity {
 
                             // Get information about the video file.
                             Intent videoPath = result.getData();
-                            uri = videoPath.getData();
-                            mimeType = getContentResolver().getType(uri);
+                            resultUri = videoPath.getData();
+                            mimeType = getContentResolver().getType(resultUri);
                             returnCursor =
-                                    getContentResolver().query(uri, null, null, null, null);
+                                    getContentResolver().query(resultUri, null, null, null, null);
                             nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                             sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
                             returnCursor.moveToFirst();
                             vidFileName = returnCursor.getString(nameIndex);
                             vidFileSize = Long.toString(returnCursor.getLong(sizeIndex));
-                            // int foo = Integer.parseInt(vidFileSize);
-                            // File file = new File(path);
-
-                            // Convert to bytes, then string
-
-                            // String s = new String(bytes, StandardCharsets.UTF_8);
+                            File file = new File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), vidFileName);
+                            byte[] bytes = new byte[Integer.parseInt(vidFileSize)];
+                            BufferedInputStream buf = null;
+                            try {
+                                buf = new BufferedInputStream(new FileInputStream(file));
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                buf.read(bytes, 0, bytes.length);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                buf.close();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            vidBytesStr = new String(bytes, StandardCharsets.UTF_8);
+                            // Log.d(LOG_TAG, s);
 
                             switch (btn_txt) {
 
@@ -151,6 +179,7 @@ public class UploadActivity extends AppCompatActivity {
                                     idleVideoName = findViewById(R.id.idleVidName);
                                     idleVideoName.setText(vidFileName);
                                     idleVidFileName = vidFileName;
+                                    idleVidBytesStr = vidBytesStr;
                                     break;
 
                                 case "record success vid btn":
@@ -158,6 +187,7 @@ public class UploadActivity extends AppCompatActivity {
                                     successVidName = findViewById(R.id.successVidName);
                                     successVidName.setText(vidFileName);
                                     successVidFileName = vidFileName;
+                                    successVidBytesStr = vidBytesStr;
                                     break;
 
                                 case "record fail vid btn":
@@ -165,16 +195,16 @@ public class UploadActivity extends AppCompatActivity {
                                     failVidName = findViewById(R.id.failVidName);
                                     failVidName.setText(vidFileName);
                                     failVidFileName = vidFileName;
+                                    failVidBytesStr = vidBytesStr;
                                     break;
 
                             }
 
-                            Log.d(LOG_TAG, "Video has been recorded. And is available here: " + uri.toString());
-                            Log.d(LOG_TAG, uri.toString());
+                            Log.d(LOG_TAG, "Video has been recorded. And is available here: " + resultUri.toString());
+                            Log.d(LOG_TAG, resultUri.toString());
                             Log.d(LOG_TAG, vidFileName);
                             Log.d(LOG_TAG, vidFileSize);
                             Log.d(LOG_TAG, mimeType);
-                            // Log.d(LOG_TAG, s);
 
                             videoView.start();
 
@@ -200,13 +230,55 @@ public class UploadActivity extends AppCompatActivity {
 
     public void RecordVid(View view) {
 
+        String vidTypeName = "";
+        // Generate date / time for file name
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss");
+
+        // Generate random number to add to file name
+
         Button b = (Button) view;
         btn_txt = b.getContentDescription().toString();
+
+        switch (btn_txt) {
+
+            case "record idle vid btn":
+
+                vidTypeName = "idle";
+                break;
+
+            case "record success vid btn":
+
+                vidTypeName = "success";
+                break;
+
+            case "record fail vid btn":
+
+                vidTypeName = "fail";
+                break;
+
+        }
 
         Log.d(LOG_TAG, btn_txt);
 
         // recordVideo();
         Intent recordIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+
+        File vidpath = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+
+
+        File vidFile = new File(vidpath, vidTypeName + "_" + formatter.format(date) + ".mp4");
+
+        // Convert file to uri
+        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", vidFile);
+        // Save video here
+        recordIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        // Grant write permission to the camera
+        recordIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        // recordIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        // Low quality video since I'm using Volley and a REST API
+        recordIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+        recordIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 5);
         activityResultLauncher.launch(recordIntent);
 
     }
@@ -237,13 +309,6 @@ public class UploadActivity extends AppCompatActivity {
 
     }
 
-    /* private void recordVideo() {
-
-        Intent recordIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        activityResultLauncher.launch(recordIntent);
-
-    } */
-
     public void UploadVids(View view) {
 
         Log.d(LOG_TAG, "Upload Vids");
@@ -267,11 +332,18 @@ public class UploadActivity extends AppCompatActivity {
             params.put("usr_name", user);
             params.put("tickle_btn", tickle);
             params.put("idle", idleVidFileName);
-            // params.put("idle_video", uri.toString());
             params.put("success", successVidFileName);
-            // params.put("success_video", uri.toString());
             params.put("fail", failVidFileName);
-            // params.put("fail_video", uri.toString());
+            params.put("idle_video", idleVidBytesStr);
+            params.put("success_video", successVidBytesStr);
+            params.put("fail_video", failVidBytesStr);
+
+            /* params.put("idle", "tempnam");
+            params.put("success", "tempb");
+            params.put("fail", "tempyyy");
+            params.put("idle_video", "testidle");
+            params.put("success_video", "testsuccess");
+            params.put("fail_video", "testfail"); */
 
             JSONObject parameters = new JSONObject(params);
 
