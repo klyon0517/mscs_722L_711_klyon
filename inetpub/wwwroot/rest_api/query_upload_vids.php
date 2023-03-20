@@ -18,12 +18,28 @@
   
   
   date_default_timezone_set("America/New_York");
+  ini_set('max_execution_time', '360');
 
   include 'mariadb/mariadb_connection.php';
   
   $_POST = json_decode(file_get_contents('php://input'), true);
   $usr_name = $_POST['usr_name'];
   $tickle_btn = $_POST['tickle_btn'];
+  $idle = $_POST['idle'];
+  $idle_video = $_POST['idle_video'];
+  $success = $_POST['success'];
+  $success_video = $_POST['success_video'];
+  $fail = $_POST['fail'];
+  $fail_video = $_POST['fail_video'];
+  
+  /* $usr_name = "SqH";
+  $tickle_btn = "head";
+  $idle = "adsfasdfasdf";
+  $success = "fewwr";
+  $fail = "rrwe";
+  $idle_video = "asdfasdfasdfasdfasdfasdfasdf";
+  $success_video = "asdfwserwegadghrtrtewr";
+  $fail_video = "asdfreqwertwtwerytsdfsdh"; */
   
   $stmt = $mariadb_conn->prepare(
     "SELECT
@@ -58,12 +74,22 @@
   $stmt = $mariadb_conn->prepare(
     "INSERT INTO
       game_info
-    (usr_id, tickle_btn)
+    (usr_id, tickle_btn, idle, success, fail, idle_video, success_video, fail_video)
     VALUES
-    (:usr_id, :tickle_btn)");
+    (:usr_id, :tickle_btn, :idle, :success, :fail, :idle_video, :success_video, :fail_video)");
   $stmt->bindParam("usr_id", $usr_id, PDO::PARAM_STR);
   $stmt->bindParam("tickle_btn", $tickle_btn, PDO::PARAM_STR);
+  $stmt->bindParam("idle", $idle, PDO::PARAM_STR);
+  $stmt->bindParam("success", $success, PDO::PARAM_STR);
+  $stmt->bindParam("fail", $fail, PDO::PARAM_STR);
+  $stmt->bindParam("idle_video", $idle_video, PDO::PARAM_STR);
+  $stmt->bindParam("success_video", $success_video, PDO::PARAM_STR);
+  $stmt->bindParam("fail_video", $fail_video, PDO::PARAM_STR);
   $stmt->execute();
+  
+  file_put_contents("files/" . $idle, $idle_video);
+  file_put_contents("files/" . $success, $success_video);
+  file_put_contents("files/" . $fail, $fail_video);
   
   echo json_encode(array("message" => "Successful Upload"));
   
