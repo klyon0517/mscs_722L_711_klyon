@@ -155,21 +155,37 @@ public class UploadActivity extends AppCompatActivity {
                             File file = new File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), vidFileName);
                             byte[] bytes = new byte[Integer.parseInt(vidFileSize)];
                             BufferedInputStream buf = null;
+
                             try {
+
                                 buf = new BufferedInputStream(new FileInputStream(file));
+
                             } catch (FileNotFoundException e) {
+
                                 throw new RuntimeException(e);
+
                             }
+
                             try {
+
                                 buf.read(bytes, 0, bytes.length);
+
                             } catch (IOException e) {
+
                                 throw new RuntimeException(e);
+
                             }
+
                             try {
+
                                 buf.close();
+
                             } catch (IOException e) {
+
                                 throw new RuntimeException(e);
+
                             }
+
                             vidBytesStr = Base64.encodeToString(bytes, 0);
 
                             switch (btn_txt) {
@@ -239,7 +255,6 @@ public class UploadActivity extends AppCompatActivity {
 
         File vidpath = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
 
-        // File vidFile = new File(vidpath, vidTypeName + "_" + formatter.format(date) + ".mp4");
         File vidFile = new File(vidpath, genRandomName());
 
         // Convert file to uri
@@ -248,7 +263,6 @@ public class UploadActivity extends AppCompatActivity {
         recordIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         // Grant write permission to the camera
         recordIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        // recordIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         // Low quality video since I'm using Volley and a REST API
         recordIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
         recordIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 5);
@@ -340,13 +354,6 @@ public class UploadActivity extends AppCompatActivity {
             params.put("idle_video", idleVidBytesStr);
             params.put("success_video", successVidBytesStr);
             params.put("fail_video", failVidBytesStr);
-
-            /* params.put("idle", "tempnam");
-            params.put("success", "tempb");
-            params.put("fail", "tempyyy");
-            params.put("idle_video", "testidle");
-            params.put("success_video", "testsuccess");
-            params.put("fail_video", "testfail"); */
 
             JSONObject parameters = new JSONObject(params);
 
