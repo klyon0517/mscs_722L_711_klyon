@@ -31,16 +31,7 @@
   $idle_video = $_POST['idle_video'];
   $success_video = $_POST['success_video'];
   $fail_video = $_POST['fail_video'];
-  
-  /* $usr_name = "SqH";
-  $tickle_btn = "head";
-  $idle = "adsfasdfasdf";
-  $success = "fewwr";
-  $fail = "rrwe";
-  $idle_video = "asdfasdfasdfasdfasdfasdfasdf";
-  $success_video = "asdfwserwegadghrtrtewr";
-  $fail_video = "asdfreqwertwtwerytsdfsdh"; */
-  
+    
   $stmt = $mariadb_conn->prepare(
     "SELECT
       id
@@ -84,6 +75,7 @@
   $stmt->bindParam("fail", $fail, PDO::PARAM_STR);
   $stmt->execute();
   
+  // Encode and save video files
   $idle_video = base64_decode($idle_video, true);
   $success_video = base64_decode($success_video, true);
   $fail_video = base64_decode($fail_video, true);

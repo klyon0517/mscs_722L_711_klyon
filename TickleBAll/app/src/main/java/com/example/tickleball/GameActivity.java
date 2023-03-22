@@ -15,6 +15,7 @@ package com.example.tickleball;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,6 +25,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class GameActivity extends AppCompatActivity {
     String url = "http://192.168.1.158/rest_api/files/";
     String videoUrl = "";
     Uri uri = Uri.parse("");
+    String btn_txt = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,25 @@ public class GameActivity extends AppCompatActivity {
         videoView.setVideoURI(uri);
         videoView.start();
 
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                Intent failIntent = new Intent(GameActivity.this, FailActivity.class);
+                failIntent.putExtra("message_key", id + "," + success_vid + "," + fail_vid);
+
+                if (Objects.equals(btn_txt, "")) {
+
+                    startActivity(failIntent);
+
+                }
+
+            }
+
+        }, 5000L);
+
     }
 
     /*  Success or Fail scenarios are based on the
@@ -84,7 +107,7 @@ public class GameActivity extends AppCompatActivity {
     public void ButtonPress(View view) {
 
         ImageButton b = (ImageButton) view;
-        String btn_txt = b.getContentDescription().toString();
+        btn_txt = b.getContentDescription().toString();
 
         Log.d(LOG_TAG, success_type);
         Log.d(LOG_TAG, btn_txt);
