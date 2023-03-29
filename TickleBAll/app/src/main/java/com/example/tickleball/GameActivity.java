@@ -41,12 +41,15 @@ public class GameActivity extends AppCompatActivity {
     String videoUrl = "";
     Uri uri = Uri.parse("");
     String btn_txt = "";
+    // Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         Intent msg_intent = getIntent();
         String str = msg_intent.getStringExtra("message_key");
@@ -106,6 +109,8 @@ public class GameActivity extends AppCompatActivity {
      */
     public void ButtonPress(View view) {
 
+        // VibrationEffect vibrationEffect;
+
         ImageButton b = (ImageButton) view;
         btn_txt = b.getContentDescription().toString();
 
@@ -114,11 +119,27 @@ public class GameActivity extends AppCompatActivity {
 
         if (success_type.equals(btn_txt)) {
 
+            // Set the 'success' vibration effect to EFFECT_TICK
+            /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                vibrationEffect = VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK);
+                vibrator.vibrate(vibrationEffect);
+
+            } */
+
             Intent tickleIntent = new Intent(this, SuccessActivity.class);
             tickleIntent.putExtra("message_key", id + "," + success_vid);
             startActivity(tickleIntent);
 
         } else {
+
+            // Set the 'fail' vibration effect to EFFECT_HEAVY_CLICK
+            /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                vibrationEffect = VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK);
+                vibrator.vibrate(vibrationEffect);
+
+            } */
 
             Intent tickleIntent = new Intent(this, FailActivity.class);
             tickleIntent.putExtra("message_key", id + "," + success_vid + "," + fail_vid);

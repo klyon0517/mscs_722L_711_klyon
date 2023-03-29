@@ -28,7 +28,7 @@ CREATE TABLE `game_info` (
   PRIMARY KEY (`id`),
   KEY `usr_id` (`usr_id`),
   CONSTRAINT `game_info_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `usr_stats` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 /*Data for the table `game_info` */
 
@@ -36,8 +36,7 @@ insert  into `game_info`(`id`,`usr_id`,`tickle_btn`,`idle`,`success`,`fail`) val
 (1,1,'head','kerry_idle.mp4','kerry_success.mp4','kerry_fail.mp4'),
 (2,2,'armpit','matt_idle.mov','matt_success.mov','matt_fail.mov'),
 (4,5,'foot','batman_idle.mp4','batman_success.mp4','batman_fail.mp4'),
-(34,35,'head','SquareHead_idle_20230320_163944.mp4','SquareHead_success_20230320_164002.mp4','SquareHead_fail_20230320_164027.mp4'),
-(35,36,'head','Manimal_idle_20230321_055132.mp4','Manimal_success_20230321_055150.mp4','Manimal_fail_20230321_055204.mp4');
+(30,33,'head','SqHd_idle_20230329_102330.mp4','SqHd_success_20230329_102352.mp4','SqHd_fail_20230329_102406.mp4');
 
 /*Table structure for table `usr_stats` */
 
@@ -48,7 +47,7 @@ CREATE TABLE `usr_stats` (
   `streak` int(11) DEFAULT 0,
   `streak_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usr_stats` */
 
@@ -63,8 +62,7 @@ insert  into `usr_stats`(`id`,`usr_name`,`coin`,`streak`,`streak_date`) values
 (8,'ScummVM',64,33,'2022-12-26'),
 (9,'MS-DOS',8,3,'2023-01-13'),
 (10,'Ti99 4A',10,8,'2022-11-19'),
-(35,'SquareHead',3,0,NULL),
-(36,'Manimal',3,0,NULL);
+(33,'SqHd',3,0,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
