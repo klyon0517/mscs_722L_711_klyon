@@ -127,6 +127,9 @@ public class GameActivity extends AppCompatActivity {
 
             } */
 
+            // view.setHapticFeedbackEnabled(true);
+            // view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+
             Intent tickleIntent = new Intent(this, SuccessActivity.class);
             tickleIntent.putExtra("message_key", id + "," + success_vid);
             startActivity(tickleIntent);
@@ -141,12 +144,14 @@ public class GameActivity extends AppCompatActivity {
 
             } */
 
+            // view.setHapticFeedbackEnabled(true);
+            // view.performHapticFeedback(HapticFeedbackConstants.REJECT);
+
             Intent tickleIntent = new Intent(this, FailActivity.class);
             tickleIntent.putExtra("message_key", id + "," + success_vid + "," + fail_vid);
             startActivity(tickleIntent);
 
         }
-
 
     }
 

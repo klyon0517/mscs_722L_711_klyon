@@ -54,6 +54,12 @@
     <string name="record_success_vid_btn">record success vid btn</string>
     <string name="record_fail_vid_btn">record fail vid btn</string>
     <string name="record_fail_video">Record Fail Video</string>
+    <string name="trophy1">trophy1</string>
+    <string name="coin1">coin1</string>
+    <string name="trophy3">trophy3</string>
+    <string name="coin3">coin3</string>
+    <string name="trophy2">trophy2</string>
+    <string name="coin2">coin2</string>
     <string-array name="tickle_spots">
         <item>head</item>
         <item>armpit</item>
