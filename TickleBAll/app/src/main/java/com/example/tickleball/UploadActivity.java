@@ -377,7 +377,7 @@ public class UploadActivity extends AppCompatActivity {
 
                     }
 
-                    Log.d(LOG_TAG, "Response : " + message);
+                    Log.d(LOG_TAG, "Response: " + message);
 
                     Context context = getApplicationContext();
                     CharSequence text = message;
@@ -393,7 +393,7 @@ public class UploadActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-                    Log.d(LOG_TAG, "Error :" + error.toString());
+                    Log.d(LOG_TAG, "Error: " + error.toString());
 
                 }
 

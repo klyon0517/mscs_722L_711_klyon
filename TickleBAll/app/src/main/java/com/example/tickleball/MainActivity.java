@@ -36,8 +36,14 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private static final String TAG = MainActivity.class.getName();
+    RequestQueue queue;
+    Intent idleIntent;
+    Intent hiscoreIntent;
     String dat1 = "";
+    // String url = "http://10.0.2.2/rest_api/query_tickle_vids.php";
+    String url = "http://192.168.1.158/rest_api/query_tickle_vids.php";
+    // String url2 = "http://10.0.2.2/rest_api/query_hiscore.php";
+    String url2 = "http://192.168.1.158/rest_api/query_hiscore.php";
     // MediaPlayer music;
 
     @Override
@@ -75,10 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "button clicked");
 
-        // String url = "http://10.0.2.2/rest_api/query_tickle_vids.php";
-        String url = "http://192.168.1.158/rest_api/query_tickle_vids.php";
-        Intent idleIntent = new Intent(this, GameActivity.class);
-        RequestQueue queue = Volley.newRequestQueue(this);
+        idleIntent = new Intent(this, GameActivity.class);
+
+        queue = Volley.newRequestQueue(this);
 
         // Gets the game data using my PHP REST API
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -87,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 dat1 = response.toString();
-                Log.d(TAG, "Response :" + response);
+                Log.d(LOG_TAG, "Response: " + response);
 
                 // Pass response data to GameActivity
                 idleIntent.putExtra("message_key", dat1);
@@ -100,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.d(TAG, "Error :" + error.toString());
+                Log.d(LOG_TAG, "Error: " + error.toString());
 
             }
 
@@ -125,19 +130,18 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "HiScore");
 
-        // String url = "http://10.0.2.2/rest_api/query_hiscore.php";
-        String url = "http://192.168.1.158/rest_api/query_hiscore.php";
-        Intent hiscoreIntent = new Intent(this, HiscoreActivity.class);
-        RequestQueue queue = Volley.newRequestQueue(this);
+        hiscoreIntent = new Intent(this, HiscoreActivity.class);
+
+        queue = Volley.newRequestQueue(this);
 
         // Gets the hiscore streak data using my PHP REST API
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url2, null, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
 
                 dat1 = response.toString();
-                Log.d(TAG, "Response :" + response);
+                Log.d(LOG_TAG, "Response: " + response);
 
                 // Pass response data to HiscoreActivity
                 hiscoreIntent.putExtra("message_key", dat1);
@@ -150,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.d(TAG, "Error :" + error.toString());
+                Log.d(LOG_TAG, "Error: " + error.toString());
 
             }
 

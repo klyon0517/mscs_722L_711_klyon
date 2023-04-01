@@ -8,6 +8,7 @@
       * Created: February 16, 2023
 
       * PHP REST API. Queries the tickle btn and idle, success, and fail videos.
+      * Maintains coin and streak state as well.
 
   */
   
@@ -17,6 +18,33 @@
 
   include 'mariadb/mariadb_connection.php';
   
+  $queryPackage = new stdClass();
+  
+  // Select klyon user account
+  // for coin and streak tracking
+  $stmt = $mariadb_conn->prepare(
+    "SELECT
+      coin,
+      streak
+    FROM
+      usr_stats
+    WHERE usr_name = 'klyon'");
+  $stmt->execute();
+  $result = $stmt->fetchObject();
+  
+  if (!empty($result)) {
+    
+    $user = $result;
+    $queryPackage->user = $user;
+    
+  } else {
+    
+    $user = array("coin" => "", "streak" => "");
+    $queryPackage->user = $user;
+          
+  }
+  
+  // Select a random game id
   $stmt = $mariadb_conn->prepare(
     "SELECT
       id
@@ -36,6 +64,7 @@
   $random_key = array_rand($idsArray, 1);    
   $id = $idsArray[$random_key];
   
+  // Select the game based on the id
   $stmt = $mariadb_conn->prepare(
     "SELECT
       id,
@@ -52,14 +81,17 @@
         
   if (!empty($result)) {
     
-    echo json_encode($result);
+    $vid = $result;
+    $queryPackage->video = $vid;
     
   } else {
     
-    $none = array("id" => "", "usr_id" => "", "tickle_btn" => "", "idle" => "", "success" => "", "fail" => "");
-    echo json_encode($none);
+    $vid = array("id" => "", "usr_id" => "", "tickle_btn" => "", "idle" => "", "success" => "", "fail" => "");
+    $queryPackage->video = $vid;
           
   }
+  
+  echo json_encode($queryPackage);
   
   $mariadb_conn = null;
 
