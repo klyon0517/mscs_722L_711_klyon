@@ -19,23 +19,33 @@ External Files for MariaDB / PHP REST API:
   * inetpub/wwwroot/rest_api/query_next_tickle_vid.php
   * inetpub/wwwroot/rest_api/query_tickle_vids.php
   * inetpub/wwwroot/rest_api/query_upload_vids.php
+  * inetpub/wwwroot/rest_api/update_coin_streak.php
 * Media located in
   * inetpub/wwwroot/rest_api/files/
 
 Project 2 additions:
+* Time limit on initial (idle) video
+  * must guess tickle spot in 5 secs or autofail
 * Connect to Android device from my PC
 * Create an upload page
 * Access camera
-* Film vids and upload
+* Access app storage
+* base64 encode and upload videos (all 3: idle, success, fail)
 * Create player account and vids via REST API
+* Track coins
+  * start with 3
+  * earn 3 on a successful tickle
+  * lose 1 on an autofail (no guess within 5 secs)
+  * pay 1 to see the success video (from the fail screen)
+* Track streak
+  * streak continues from where player left off
 
 Potential enhancements (time allowing):
-* Coins
+* User login
 * Nice logo
 * Sound effects
 * Particle effects
 * Animations
-* Ability for content creators to upload the 3 short 5 second videos (idle, tickle ending, wrong ending)
 * Bookmark favorite creators / videos
 * Comments
 * View your library of videos
