@@ -1,6 +1,14 @@
 # Spring 2023 Enterprise Mobile Development
 This is my mobile dev repository.
 
+## Project 3
+
+AR project.
+* Watched the project videos
+* Android Studio & Emulator are up-to-date
+* cloned the sceneform-android-sdk
+
+
 ## Project 1 and 2: Tickle Ball (Native Android Game)
 
 Social media game where the player interacts with 3 green circles (tickle points) overlaying a short video of a person standing idle. The tickle point overlay is always in the same location: 1 circle near the head, 1 near the armpit, and 1 near the feet. (This also acts as a positioning template for content creators to get creative with. Ex. What kind of a funny and creative position could a person stand in relation to the tickle circles.) The player guesses where the person in the video is ticklish by clicking one of the three tickle points. If they get it correct, they get the "tickle ending"; a new video of the person laughing. If the player guesses wrong, it goes to a video of the person acting angry or sad.
