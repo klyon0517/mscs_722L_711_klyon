@@ -7,6 +7,13 @@ AR project.
 * Watched the project videos
 * Android Studio & Emulator are up-to-date
 * cloned the sceneform-android-sdk
+* Successfully emulated GLTF sample AR app
+* Successfully emulated SceneView Sceneform Maintained sample AR apps
+* Created my own project 3 app
+  * https://codemaker2016.medium.com/augmented-reality-technology-continues-to-change-the-way-we-interact-with-the-environment-that-66a0a039d385
+  * Added a model I grabbed from Sketchfab (since the Poly 3D Models is defunct).
+  * Resized the tank model .glb in Blender since it was huge (matched it to the tiger model.glb)
+  * Placed multiple tank models in my emulator and took a screenshot
 
 
 ## Project 1 and 2: Tickle Ball (Native Android Game)
