@@ -3,17 +3,26 @@ This is my mobile dev repository.
 
 ## Project 3
 
-AR project.
+ARCore project.
 * Watched the project videos
 * Android Studio & Emulator are up-to-date
 * cloned the sceneform-android-sdk
 * Successfully emulated GLTF sample AR app
 * Successfully emulated SceneView Sceneform Maintained sample AR apps
+* Posted instructions in the forums
 * Created my own project 3 app
   * https://codemaker2016.medium.com/augmented-reality-technology-continues-to-change-the-way-we-interact-with-the-environment-that-66a0a039d385
   * Added a model I grabbed from Sketchfab (since the Poly 3D Models is defunct).
   * Resized the tank model .glb in Blender since it was huge (matched it to the tiger model.glb)
   * Placed multiple tank models in my emulator and took a screenshot
+
+Tabletop AR D&D
+  * Place D&D miniatures on the map on the table in the emulated environment.
+
+To Do:
+  * Ability to remove miniature or reposition.
+  * Ability to choose and place multiple types of miniatures.
+  * Ability to roll a D20 with physics
 
 
 ## Project 1 and 2: Tickle Ball (Native Android Game)
