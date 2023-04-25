@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Load model.glb from assets folder or http url
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
-        arFragment.setOnTapPlaneGlbModel("ArcherElf.glb");
+        arFragment.setOnTapPlaneGlbModel("archer_elf.glb");
 
     }
 }
