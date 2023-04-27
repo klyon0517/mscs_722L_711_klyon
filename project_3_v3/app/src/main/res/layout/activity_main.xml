@@ -24,54 +24,63 @@
             <ImageView
                 android:id="@+id/dwarfAxe"
                 android:src="@drawable/dwarf_axe"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/dwarfBomb"
                 android:src="@drawable/dwarf_bomb"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/elf"
                 android:src="@drawable/elf"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/goblin"
                 android:layout_width="100dp"
+                android:onClick="modelPick"
                 android:layout_height="wrap_content"
                 android:src="@drawable/goblin" />
 
             <ImageView
                 android:id="@+id/horseKnight"
                 android:src="@drawable/horse_knight"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/knight"
                 android:src="@drawable/knight"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/orc"
                 android:src="@drawable/orc"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/troll"
                 android:src="@drawable/troll"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/wizard"
                 android:src="@drawable/wizard"
+                android:onClick="modelPick"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
