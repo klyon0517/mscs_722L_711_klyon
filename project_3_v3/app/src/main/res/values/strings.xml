@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">project_3_v3</string>
+    <string name="roll">ROLL</string>
+    <string name="d20_dice_image">D20 Dice Image</string>
+    <string name="dwarf_axe_miniature">Dwarf Axe Miniature</string>
+    <string name="dwarf_bomb_miniature">Dwarf Bomb Miniature</string>
+    <string name="elf_archer_miniature">Elf Archer Miniature</string>
+    <string name="goblin_miniature">Goblin Miniature</string>
+    <string name="horse_knight_miniature">Horse Knight Miniature</string>
+    <string name="knight_miniature">Knight Miniature</string>
+    <string name="orc_miniature">Orc Miniature</string>
+    <string name="troll_miniature">Troll Miniature</string>
+    <string name="wizard_miniature">Wizard Miniature</string>
 </resources>

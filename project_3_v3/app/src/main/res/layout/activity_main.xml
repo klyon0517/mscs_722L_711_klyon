@@ -14,7 +14,9 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,70 +25,105 @@
 
             <ImageView
                 android:id="@+id/dwarfAxe"
-                android:src="@drawable/dwarf_axe"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/dwarf_axe_miniature"
+                android:src="@drawable/dwarf_axe" />
 
             <ImageView
                 android:id="@+id/dwarfBomb"
-                android:src="@drawable/dwarf_bomb"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/dwarf_bomb_miniature"
+                android:src="@drawable/dwarf_bomb" />
 
             <ImageView
                 android:id="@+id/elf"
-                android:src="@drawable/elf"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/elf_archer_miniature"
+                android:src="@drawable/elf" />
 
             <ImageView
                 android:id="@+id/goblin"
                 android:layout_width="100dp"
-                android:onClick="modelPick"
                 android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/goblin_miniature"
                 android:src="@drawable/goblin" />
 
             <ImageView
                 android:id="@+id/horseKnight"
-                android:src="@drawable/horse_knight"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/horse_knight_miniature"
+                android:src="@drawable/horse_knight" />
 
             <ImageView
                 android:id="@+id/knight"
-                android:src="@drawable/knight"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/knight_miniature"
+                android:src="@drawable/knight" />
 
             <ImageView
                 android:id="@+id/orc"
-                android:src="@drawable/orc"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/orc_miniature"
+                android:src="@drawable/orc" />
 
             <ImageView
                 android:id="@+id/troll"
-                android:src="@drawable/troll"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/troll_miniature"
+                android:src="@drawable/troll" />
 
             <ImageView
                 android:id="@+id/wizard"
-                android:src="@drawable/wizard"
-                android:onClick="modelPick"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="modelPick"
+                android:contentDescription="@string/wizard_miniature"
+                android:src="@drawable/wizard" />
 
         </LinearLayout>
 
     </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/roll_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:onClick="rollDice"
+        android:text="@string/roll"
+        android:textColor="#000000"
+        android:backgroundTint="#ffffff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/d20_dice"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:background="@null"
+        android:contentDescription="@string/d20_dice_image"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/d20_20" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

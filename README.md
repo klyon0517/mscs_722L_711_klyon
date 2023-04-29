@@ -18,11 +18,13 @@ ARCore project.
 
 Tabletop AR D&D
   * Place D&D miniatures on the map on the table in the emulated environment.
+  * Choose and place multiple types of miniatures.
+  * Reposition miniature.
+  * D20 dice roll with audio (ImageView not AR)
 
 To Do:
-  * Ability to remove miniature or reposition.
-  * Ability to choose and place multiple types of miniatures.
-  * Ability to roll a D20 with physics
+  * Remove miniatures from the table
+  * ARCore Cloud Anchors
 
 
 ## Project 1 and 2: Tickle Ball (Native Android Game)
