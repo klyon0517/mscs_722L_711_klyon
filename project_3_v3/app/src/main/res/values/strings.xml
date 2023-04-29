@@ -11,4 +11,6 @@
     <string name="orc_miniature">Orc Miniature</string>
     <string name="troll_miniature">Troll Miniature</string>
     <string name="wizard_miniature">Wizard Miniature</string>
+    <string name="resolve">RESOLVE</string>
+    <string name="clear">CLEAR</string>
 </resources>

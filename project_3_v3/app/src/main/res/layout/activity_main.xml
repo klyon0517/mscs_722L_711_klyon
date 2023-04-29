@@ -125,5 +125,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/d20_20" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

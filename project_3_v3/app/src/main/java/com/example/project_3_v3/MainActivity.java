@@ -7,7 +7,8 @@
 
  * This file contains the methods for selecting and
  * viewing 3D tabletop miniatures and placing
- * them on the table map.
+ * them on the table map, rolling the D20, and
+ * cloud anchors.
 
  */
 
@@ -26,6 +27,7 @@ import android.widget.ImageView;
 import com.google.ar.sceneform.ux.ArFragment;
 
 import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
 
