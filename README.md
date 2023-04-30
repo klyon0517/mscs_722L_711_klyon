@@ -15,6 +15,7 @@ ARCore project.
   * Added a model I grabbed from Sketchfab (since the Poly 3D Models is defunct).
   * Resized the tank model .glb in Blender since it was huge (matched it to the tiger model.glb)
   * Placed multiple tank models in my emulator and took a screenshot
+* Successfully emulated the ARCore Cloud Anchor sample app
 
 Tabletop AR D&D
   * Place D&D miniatures on the map on the table in the emulated environment.
@@ -22,9 +23,9 @@ Tabletop AR D&D
   * Reposition miniature.
   * D20 dice roll with audio (ImageView not AR)
 
-To Do:
+Time Permitting:
   * Remove miniatures from the table
-  * ARCore Cloud Anchors
+  * Incoporate ARCore Cloud Anchors into my project
 
 
 ## Project 1 and 2: Tickle Ball (Native Android Game)
